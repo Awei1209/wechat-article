@@ -1,7 +1,7 @@
 # 微信公众号 AI 写作工作流 — 完整文档
 
 > 让 AI 帮你从选题到发布，一口气写完一篇公众号文章。
-> 作者：橙猫猫 | GitHub：[yunshengya/wechat-article](https://github.com/yunshengya/wechat-article)
+> 作者：橙猫猫 | GitHub：yunshengya/wechat-article
 
 ---
 
@@ -47,8 +47,8 @@ wechat-article/
 └── wechat-article.skill          ← 打包好的 Skill 文件（可直接安装）
 ```
 
-**普通用户只需要看：** `AI助手使用教程.md`
-**想定制/开发的人需要看：** `README.md`（即本文档）+ `longwrite/SKILL.md`
+**普通用户只需要看：** AI助手使用教程.md
+**想定制/开发的人需要看：** README.md（即本文档）+ longwrite/SKILL.md
 
 ---
 
@@ -57,8 +57,8 @@ wechat-article/
 ### 第一步：理解工作原理
 
 ```
-你说 "写一篇公众号" 
-  → AI 读取 longwrite/SKILL.md 
+你说 "写一篇公众号"
+  → AI 读取 longwrite/SKILL.md
   → 按 8 个 Step 依次执行
   → 输出：文章 + 标题 + 摘要 + 标签 + 配图提示词 + 排版格式
 ```
@@ -76,7 +76,7 @@ wechat-article/
 | 语气与人设 | 朋友聊天 / 行业观察 / 犀利评论 |
 | 黑名单 | 不想出现的词（比如"赋能"、"颠覆"） |
 
-回答后，AI 生成 `style.yaml` 文件保存配置。之后再说「写一篇公众号」，就直接跑完全程，不需要重复确认。
+回答后，AI 生成 style.yaml 文件保存配置。之后再说「写一篇公众号」，就直接跑完全程，不需要重复确认。
 
 ### 第三步：开始写文章
 
@@ -134,16 +134,16 @@ AI：继续写完剩余步骤
 ### Step 1：环境 + 配置
 
 **做什么：**
-1. 读取你的 `style.yaml`（写作风格配置）
+1. 读取你的 style.yaml（写作风格配置）
 2. 检测三个能力是否可用：
    - WebSearch（搜索素材）
    - 图像生成（AI 画图）
    - 发布能力（草稿箱/API）
 
 **降级标记：**
-- 如果没有图像生成器 → `skip_image_gen=true`，Step 6 只输出文字提示词
-- 如果没有发布能力 → `skip_publish=true`，Step 7 输出「可复制粘贴」的格式
-- 如果搜索被限制 → `skip_websearch=true`，用常识和用户提供的信息写
+- 如果没有图像生成器 → skip_image_gen=true，Step 6 只输出文字提示词
+- 如果没有发布能力 → skip_publish=true，Step 7 输出「可复制粘贴」的格式
+- 如果搜索被限制 → skip_websearch=true，用常识和用户提供的信息写
 
 **输出：** 三个降级标记 + 风格配置
 
@@ -163,10 +163,10 @@ AI：继续写完剩余步骤
 - 可写性（素材够不够）
 - 与账号定位的匹配度（参考 style.yaml）
 
-**如果 `skip_websearch=false`：**
+**如果 skip_websearch=false：**
 AI 会实际搜索热点、趋势、背景材料来支撑选题。
 
-**如果 `skip_websearch=true`：**
+**如果 skip_websearch=true：**
 AI 基于公开常识生成选题，并在每个选题后标注「建议补充真实数据来源」。
 
 ---
@@ -175,7 +175,7 @@ AI 基于公开常识生成选题，并在每个选题后标注「建议补充�
 
 **做什么：**
 
-1. **选框架**：从 `frameworks.md`（7套框架）中选最合适的
+1. **选框架**：从 frameworks.md（7套框架）中选最合适的
 2. **采集素材**：搜索真实信息，每条标注来源
 
 **7 套写作框架：**
@@ -212,9 +212,9 @@ AI 基于公开常识生成选题，并在每个选题后标注「建议补充�
 - 每个 H2 至少引用 1 条真实素材（零编造）
 
 **编辑锚点（让 AI 文章变成「你的作品」）：**
-```html
-<!-- ✏️ 编辑建议：在这里加一句你自己的经历/看法 -->
-```
+
+✏️ 编辑建议：在这里加一句你自己的经历/看法
+
 这是模板最关键的设计：AI 出初稿，你补充真实经历，两句话就能让文章完全不一样。
 
 **禁止的词：**
@@ -259,9 +259,9 @@ AI 基于公开常识生成选题，并在每个选题后标注「建议补充�
 **做什么：** 生成封面 + 内文配图的提示词
 
 **封面：** 输出 3 套方案，每套包含：
-- `prompt`：画面描述
-- `negative_prompt`：不希望出现的元素
-- `style_anchor`：色板/风格关键词（后续内文图复用）
+- prompt：画面描述
+- negative_prompt：不希望出现的元素
+- style_anchor：色板/风格关键词（后续内文图复用）
 
 **内文配图：** 3-6 张，类型包括：
 - 流程图（流程步骤类文章）
@@ -269,7 +269,7 @@ AI 基于公开常识生成选题，并在每个选题后标注「建议补充�
 - 时间线（热点解读类文章）
 - 场景图（故事/观点类文章）
 
-**如果 `skip_image_gen=true`：**
+**如果 skip_image_gen=true：**
 只输出文字提示词（你复制到豆包/即梦生成图片）。
 
 ---
@@ -278,7 +278,7 @@ AI 基于公开常识生成选题，并在每个选题后标注「建议补充�
 
 **做什么：** 输出排版好的格式
 
-**如果 `skip_publish=true`（无发布 API）：**
+**如果 skip_publish=true（无发布 API）：**
 输出两份格式：
 1. 纯 Markdown（保真）
 2. 平台友好格式（可直接粘贴到公众号编辑器）
@@ -300,7 +300,7 @@ AI 基于公开常识生成选题，并在每个选题后标注「建议补充�
 
 **最终回复包含：**
 - 本次选择的：选题 / 框架 / 写作策略（简要）
-- 本次降级项（如有）：`skip_websearch / skip_image_gen / skip_publish`
+- 本次降级项（如有）：skip_websearch / skip_image_gen / skip_publish
 - 下一步入口：
   - "检查一下" → 输出质量报告（面向修改建议）
   - "学习我的修改" → 启动风格飞轮（把你的编辑反哺到规则库）
@@ -355,7 +355,7 @@ content_preferences:
 
 ### 1）改 Skill 名称与触发词
 
-编辑 `longwrite/SKILL.md` 顶部的 YAML：
+编辑 longwrite/SKILL.md 顶部的 YAML：
 
 ```yaml
 ---
@@ -368,7 +368,7 @@ description: |
 
 ### 2）改目标平台参数
 
-在 `onboard.md` 里加入平台字段，生成到 `style.yaml`：
+在 onboard.md 里加入平台字段，生成到 style.yaml：
 
 ```yaml
 platform: "wechat"   # 或 "zhihu" / "blog" / "newsletter"
@@ -396,12 +396,12 @@ platform: "wechat"   # 或 "zhihu" / "blog" / "newsletter"
 ### 4）接入图像生成（可选）
 
 - 有图像生成器 → 在 Step 6 加入生成调用，图片与插入位置绑定
-- 无图像生成器 → `skip_image_gen=true`，Step 6 只输出文字提示词
+- 无图像生成器 → skip_image_gen=true，Step 6 只输出文字提示词
 
 ### 5）接入发布 API（可选）
 
 - 有草稿箱 API → 调用 API 发布，输出草稿链接
-- 无 API → `skip_publish=true`，Step 7 输出手动发布说明
+- 无 API → skip_publish=true，Step 7 输出手动发布说明
 
 ---
 
@@ -502,23 +502,23 @@ AI：[Step 4-8] 开始写作，完成全部步骤...
 
 **Q：编辑锚点是什么？**
 
-`<!-- ✏️ 编辑建议：在这里加一句你自己的经历/看法 -->`
+✏️ 编辑建议：在这里加一句你自己的经历/看法
 
 AI 在写文章时会主动留「缺口」，提示你在哪里补充真实经历。两句话的补充，就能让 AI 文章变成你的作品。
 
 **Q：没有搜索能力怎么办？**
 
-设置 `skip_websearch=true`，AI 基于常识和公开信息写作，并在素材不足的地方标注风险。写作质量可能受影响，但整体流程不受阻碍。
+设置 skip_websearch=true，AI 基于常识和公开信息写作，并在素材不足的地方标注风险。写作质量可能受影响，但整体流程不受阻碍。
 
 **Q：能用在其他平台吗？**
 
-可以。修改 `onboard.md` 和 `seo-rules.md` 里的平台参数即可支持：知乎、博客、微博、Newsletter 等。
+可以。修改 onboard.md 和 seo-rules.md 里的平台参数即可支持：知乎、博客、微博、Newsletter 等。
 
 **Q：style.yaml 在哪里？**
 
 根据你的安装方式，可能在：
-- `~/.qclaw/skills/longwrite/style.yaml`
-- 或 Skill 所在目录的 `style.yaml`
+- ~/.qclaw/skills/longwrite/style.yaml
+- 或 Skill 所在目录的 style.yaml
 
 直接对 AI 说「查看我的写作风格配置」也能获取当前内容。
 
@@ -526,11 +526,11 @@ AI 在写文章时会主动留「缺口」，提示你在哪里补充真实经�
 
 ## 🔗 相关资源
 
-- [LongWrite Skill（GitHub）](https://github.com/yunshengya/wechat-article)
-- [wewrite（参考项目）](https://github.com/oaker-io/wewrite)
-- [OpenClaw 文档](https://openclaw.dev)
-- [豆包（AI 图片生成）](https://www.doubao.com)
-- [即梦（AI 图片生成）](https://jimeng.jianying.com)
+- LongWrite Skill（GitHub）：https://github.com/yunshengya/wechat-article
+- wewrite（参考项目）：https://github.com/oaker-io/wewrite
+- OpenClaw 文档：https://openclaw.dev
+- 豆包（AI 图片生成）：https://www.doubao.com
+- 即梦（AI 图片生成）：https://jimeng.jianying.com
 
 ---
 
